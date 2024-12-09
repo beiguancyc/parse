@@ -1087,12 +1087,12 @@ declare global {
         namespace LiveQuery {
             function on(
                 event: "open" | "close",
-                /** When we establish ('open') or lose the WebSocket connection to the LiveQuery server, you’ll get this event */
+                /** When we establish ('open') or lose the WebSocket connection to the LiveQuery server, you'll get this event */
                 listener: () => void,
             ): void;
             function on(
                 event: "error",
-                /** When some network error or LiveQuery server error happens, you’ll get this event. */
+                /** When some network error or LiveQuery server error happens, you'll get this event. */
                 listener: (error: any) => void,
             ): void;
         }
@@ -1621,22 +1621,24 @@ declare global {
                 validator?: Validator | ((request: FunctionRequest) => any),
             ): void;
 
-            function beforeSaveFile(
-                // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-                func?: (request: FileTriggerRequest) => PromiseLike<File> | void,
-                validator?: Validator | ((request: FunctionRequest) => any),
+            function beforeSave(
+                arg1: typeof Parse.File,
+                handler: (request: FileTriggerRequest) => Promise<File> | void
             ): void;
-            function afterSaveFile(
-                func?: (request: FileTriggerRequest) => PromiseLike<void> | void,
-                validator?: Validator | ((request: FunctionRequest) => any),
+            
+            function afterSave(
+                arg1: typeof Parse.File,
+                handler: (request: FileTriggerRequest) => Promise<void> | void
             ): void;
-            function beforeDeleteFile(
-                func?: (request: FileTriggerRequest) => PromiseLike<void> | void,
-                validator?: Validator | ((request: FunctionRequest) => any),
+            
+            function beforeDelete(
+                arg1: typeof Parse.File,
+                handler: (request: FileTriggerRequest) => Promise<void> | void
             ): void;
-            function afterDeleteFile(
-                func?: (request: FileTriggerRequest) => PromiseLike<void> | void,
-                validator?: Validator | ((request: FunctionRequest) => any),
+            
+            function afterDelete(
+                arg1: typeof Parse.File,
+                handler: (request: FileTriggerRequest) => Promise<void> | void
             ): void;
 
             function define(
